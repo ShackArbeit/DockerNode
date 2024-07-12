@@ -1,7 +1,12 @@
 const mongoose = require('mongoose');
+require('dotenv').config()
 
 let isConnected = false;
-const url = "mongodb+srv://wang8119:FMD8Z4360Bp0RK1a@cluster0.w3kipgk.mongodb.net/myWebsite?retryWrites=true&w=majority&appName=Cluster0";
+const dbUser = process.env.DB_USER;
+const dbPassword = process.env.DB_PASSWORD;
+const dbHost = process.env.DB_HOST;
+const dbName = process.env.DB_NAME;
+const url = `mongodb+srv://${dbUser}:${dbPassword}@${dbHost}/${dbName}?retryWrites=true&w=majority&appName=Cluster0`;
 
 const connectToDB = async () => {
   mongoose.set('strictQuery', true);

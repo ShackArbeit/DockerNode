@@ -28,7 +28,7 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.NODE_DOCKER_PORT || 8000;
 
 // 路由設置
 app.use(SignUpRouter);
@@ -53,5 +53,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log('Server running at port 8000!');
+  console.log(`Server is running on port ${PORT}.`);
 });
