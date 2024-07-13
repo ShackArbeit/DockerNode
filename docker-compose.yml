@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
-  mondodb:
+  mongodb:
     image: mongo:5.0.2
     restart: unless-stopped
     env_file: .env
@@ -14,15 +14,15 @@ services:
       - db:/data/db
   app: 
     depends_on:
-      - mondodb
+      - mongodb
     build:
-      ./
+       context: .
     restart: unless-stopped
     env_file: .env
     ports:
       - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
     environment:
-      - DB_HOST=mongodb
+      - DB_HOST=$DB_HOST
       - DB_USER=$MONGODB_USER
       - DB_PASSWORD=$MONGODB_PASSWORD
       - DB_NAME=$MONGODB_DATABASE

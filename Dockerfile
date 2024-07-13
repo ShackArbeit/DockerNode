@@ -4,8 +4,9 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm ci
+RUN npm install -g nodemon && npm ci
 
 COPY . .
 
-CMD ["npm", "run", "server"]
+# CMD ["npm", "run", "server"]
+CMD ["nodemon", "index.js"]
